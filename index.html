@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b10">
+<title>EIGHT LEFT v0.2.1</title>
+<style>
+:root{--bg:#090b10;--panel:#11151d;--panel2:#171c26;--line:#29303d;--text:#eef2f7;--muted:#8e99aa;--accent:#ff4f64;--accent2:#c42f46;--good:#79d9b1;--warn:#f4c86a;--blue:#7eb7ff;--shadow:0 18px 60px rgba(0,0,0,.34)}
+*{box-sizing:border-box}html{background:var(--bg);color-scheme:dark}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 0%,#171923 0,transparent 35%),linear-gradient(180deg,#090b10,#07090d 68%);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;overflow-x:hidden}button,input,select{font:inherit}.app{width:min(1440px,100%);margin:auto;padding:18px clamp(12px,3vw,32px) 40px}.topbar{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}.eyebrow,.chapter{font-size:.7rem;letter-spacing:.16em;color:var(--muted)}h1{margin:4px 0 0;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1}.top-actions{display:flex;gap:8px}.ghost,.secondary,.primary,.mode,.action-btn,.choice-btn,.tab,.tiny,.person-btn,.room-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;cursor:pointer;transition:.15s ease}.ghost:hover,.secondary:hover,.mode:hover,.action-btn:hover,.choice-btn:hover,.tab:hover,.tiny:hover,.person-btn:hover,.room-btn:hover{transform:translateY(-1px);border-color:#4c576a}.ghost{padding:9px 12px;font-size:.76rem}.primary{border-color:transparent;background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:800}.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}.secondary{background:#171c25}.big{width:100%;padding:14px 18px;margin-top:10px}.hidden{display:none!important}.screen{display:none}.screen.active{display:block}.hero-card{min-height:72vh;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}.hero-copy{padding:clamp(8px,5vw,64px)}.kicker{color:var(--accent);font-weight:800}.hero-copy h2{font-size:clamp(2.3rem,6vw,5.2rem);line-height:1.03;margin:12px 0 20px}.hero-copy h2 span{color:transparent;-webkit-text-stroke:1px #9ca6b7}.lede{color:var(--muted);font-size:1.02rem;line-height:1.7}.setup-card,.ending-card{background:linear-gradient(145deg,rgba(24,29,40,.94),rgba(14,18,25,.96));border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.field-label{display:block;color:var(--muted);font-size:.8rem;margin-bottom:7px}.setup-card input{width:100%;padding:14px 15px;border-radius:12px;border:1px solid var(--line);background:#0b0e14;color:#fff;outline:none}.mode-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.mode{padding:13px;text-align:left}.mode b,.mode small{display:block}.mode small{margin-top:4px;color:var(--muted)}.mode.selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.mode.locked{opacity:.4}.micro{font-size:.72rem;color:var(--muted);line-height:1.55}.hud-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:9px}.stat{border:1px solid var(--line);background:rgba(16,20,28,.92);border-radius:12px;padding:10px 12px}.stat span{display:block;font-size:.63rem;letter-spacing:.12em;color:var(--muted)}.stat b{display:block;margin-top:3px}.stat.danger b{color:var(--accent)}.game-grid{display:grid;grid-template-columns:245px minmax(0,1fr) 315px;gap:9px}.panel{border:1px solid var(--line);background:rgba(16,20,28,.95);border-radius:16px;min-height:675px;box-shadow:0 12px 35px rgba(0,0,0,.18);overflow:hidden}.panel-head{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--line)}.panel-head h3{margin:0;font-size:.9rem}.panel-head span{font-size:.66rem;color:var(--muted)}.participant-list{padding:8px}.participant{display:grid;grid-template-columns:38px 1fr auto;gap:9px;align-items:center;padding:9px;border-radius:11px;border:1px solid transparent}.participant.dead{opacity:.32;filter:grayscale(1)}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#252c39;border:1px solid #343e4e;font-weight:800}.participant .name{font-weight:760;font-size:.86rem}.participant .meta{color:var(--muted);font-size:.68rem;margin-top:2px}.trust{font-size:.68rem;color:var(--good)}.trust.neg{color:var(--accent)}.scene-panel{display:flex;flex-direction:column}.scene-top{display:flex;align-items:start;justify-content:space-between;gap:15px;padding:18px;border-bottom:1px solid var(--line)}.scene-top h2{margin:5px 0 0;font-size:clamp(1.35rem,3vw,1.95rem)}.phase-chip{font-size:.7rem;padding:7px 10px;border-radius:999px;background:#2a1720;color:#ff9aaa;border:1px solid #5f2634}.scene-text{padding:20px;line-height:1.8;color:#dce2ea;flex:1}.scene-text p{margin:0 0 12px}.system{padding:12px 14px;border-left:3px solid var(--accent);background:#151922;color:#b3bdcb}.goodbox{border-left-color:var(--good)}.warnbox{border-left-color:var(--warn)}.action-area{padding:0 18px 18px}.action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.action-btn,.choice-btn,.room-btn,.person-btn{padding:13px;text-align:left;background:#151a23}.action-btn b,.choice-btn b,.room-btn b,.person-btn b{display:block}.action-btn small,.choice-btn small,.room-btn small,.person-btn small{display:block;color:var(--muted);margin-top:4px;line-height:1.45}.room-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.room-btn.selected,.person-btn.selected,.choice-btn.selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.notebook-panel{overflow:hidden}.tabs{display:grid;grid-template-columns:repeat(4,1fr);padding:8px;gap:5px}.tab{padding:8px 4px;border-radius:9px;font-size:.7rem}.tab.active{background:#242b37;border-color:#455064}.tab-body{padding:8px 13px 18px;max-height:590px;overflow:auto}.note{padding:10px 0;border-bottom:1px solid #222936}.note:last-child{border-bottom:0}.note b{font-size:.8rem}.note p{font-size:.74rem;color:var(--muted);margin:4px 0 0;line-height:1.55}.tag{display:inline-flex;padding:3px 7px;border-radius:999px;font-size:.62rem;background:#242c39;color:#bdc8d8;margin:3px 4px 0 0}.tag.red{background:#3a1d24;color:#ff9aaa}.tag.green{background:#153128;color:#9be2c5}.tag.yellow{background:#332b17;color:#f1d484}.tag.blue{background:#17283a;color:#9cc7ff}.empty{color:var(--muted);font-size:.8rem;padding:18px 3px}.schedule{display:grid;gap:6px;margin-top:10px}.schedule-row{display:grid;grid-template-columns:70px 1fr auto;gap:8px;align-items:center;padding:8px 10px;border:1px solid #222936;border-radius:9px;background:#0e1218}.schedule-row b{font-size:.77rem}.schedule-row span{font-size:.7rem;color:var(--muted)}.schedule-row em{font-size:.65rem;color:var(--blue);font-style:normal}.ending-card{width:min(760px,100%);margin:7vh auto;text-align:center;padding:clamp(22px,5vw,48px)}.ending-code{font-size:.72rem;letter-spacing:.2em;color:var(--accent)}.ending-card h2{font-size:clamp(2rem,6vw,4rem);margin:10px 0}.ending-card>p{color:#b3bdcb;line-height:1.8}.ending-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:22px 0}.ending-stats div{padding:12px;border:1px solid var(--line);border-radius:11px}.ending-stats span{display:block;color:var(--muted);font-size:.66rem}.ending-stats b{display:block;margin-top:4px}.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.72);display:grid;place-items:center;padding:14px;z-index:20}.modal-card{width:min(700px,100%);max-height:88vh;overflow:auto;border-radius:17px;border:1px solid #343d4d;background:#10141c;box-shadow:var(--shadow)}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:15px 17px;border-bottom:1px solid var(--line)}.modal-head h3{margin:0}.modal-card #modalBody{padding:14px}.choice-list{display:grid;gap:8px}.tiny{font-size:.66rem;padding:5px 7px}.cause-chain{display:grid;gap:7px;margin:12px 0}.cause-step{padding:9px 11px;border:1px solid #2b3442;border-radius:9px;background:#0d1117;font-size:.78rem}.cause-step strong{color:#fff}.cause-step.ok{border-color:#24543f}.cause-step.fail{border-color:#65333d}.divider{height:1px;background:var(--line);margin:13px 0}.quote{font-weight:700;color:#fff}
+@media(max-width:1030px){.game-grid{grid-template-columns:1fr}.panel{min-height:auto}.scene-panel{order:1;min-height:570px}.participants-panel{order:2}.notebook-panel{order:3}.participant-list{display:grid;grid-template-columns:repeat(2,1fr)}.tab-body{max-height:420px}.hero-card{grid-template-columns:1fr;min-height:auto}.hero-copy{padding:34px 4px 8px}}@media(max-width:650px){.app{padding:12px 9px 30px}.topbar{align-items:center}.hud-grid{grid-template-columns:repeat(2,1fr)}.hud-grid .stat:last-child{grid-column:1/-1}.action-grid,.mode-row,.room-grid{grid-template-columns:1fr}.participant-list{grid-template-columns:1fr}.scene-text{padding:17px}.scene-top{padding:16px}.ending-stats{grid-template-columns:repeat(2,1fr)}.hero-copy h2{font-size:2.65rem}.tabs{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="topbar"><div><div class="eyebrow">CLOSED FACILITY / CAUSAL BUILD 0.2</div><h1>EIGHT LEFT</h1></div><div class="top-actions"><button class="ghost" id="saveBtn">SAVE</button><button class="ghost" id="resetBtn">RESET</button></div></header>
+<section class="screen active" id="titleScreen">
+  <div class="hero-card"><div class="hero-copy"><p class="kicker">8명. 숨겨진 계획. 실제 동선.</p><h2>죽음에는<br><span>반드시 이유가 있다.</span></h2><p class="lede">이번 판에서 누가 죽는지는 주사위가 정하지 않는다. 누가 어디에 갔고, 무엇을 가졌고, 누가 옆에 있었는지가 결정한다.</p></div>
+  <div class="setup-card"><label class="field-label">참가자 이름</label><input id="playerName" maxlength="12" value="린"><div class="mode-row"><button class="mode selected" data-mode="normal"><b>FIRST GAME</b><small>일반 참가자</small></button><button class="mode locked" data-mode="traitor" id="traitorMode"><b>NEW GAME+</b><small>???</small></button></div><button class="primary big" id="startBtn">게임 시작</button><button class="secondary big hidden" id="continueBtn">저장 데이터 이어하기</button><p class="micro">랜덤은 새 게임 시작 시 숨은 배치에만 사용된다. 이후 사건은 상태와 행동으로 결정된다.</p></div></div>
+</section>
+<section class="screen" id="gameScreen">
+  <div class="hud-grid"><div class="stat"><span>ROUND</span><b id="roundStat">1 / 3</b></div><div class="stat"><span>TIME SLOT</span><b id="slotStat">1 / 3</b></div><div class="stat"><span>TIME</span><b id="timeStat">21:00</b></div><div class="stat"><span>ALIVE</span><b id="aliveStat">8</b></div><div class="stat danger"><span>PLAYER SUSPICION</span><b id="suspicionStat">0</b></div></div>
+  <div class="game-grid">
+    <aside class="panel participants-panel"><div class="panel-head"><h3>참가자</h3><span id="traitHint">ROLE UNKNOWN</span></div><div id="participantList" class="participant-list"></div></aside>
+    <section class="panel scene-panel"><div class="scene-top"><div><span class="chapter" id="chapterLabel">ROUND 1</span><h2 id="sceneTitle">브리핑</h2></div><div class="phase-chip" id="phaseChip">브리핑</div></div><div class="scene-text" id="sceneText"></div><div class="action-area" id="actionArea"></div></section>
+    <aside class="panel notebook-panel"><div class="panel-head"><h3>노트</h3><span id="caseLabel">CASE OPEN</span></div><div class="tabs"><button class="tab active" data-tab="facts">단서</button><button class="tab" data-tab="timeline">동선</button><button class="tab" data-tab="relations">관계</button><button class="tab" data-tab="log">로그</button></div><div class="tab-body" id="notebookBody"></div></aside>
+  </div>
+</section>
+<section class="screen" id="endingScreen"><div class="ending-card"><div class="ending-code" id="endingCode">ENDING</div><h2 id="endingTitle">생존</h2><p id="endingText"></p><div id="endingStats" class="ending-stats"></div><button class="primary big" id="againBtn">다시 시작</button><button class="secondary big hidden" id="ngPlusBtn">NEW GAME+</button></div></section>
+</main>
+<div class="modal-backdrop hidden" id="modal"><div class="modal-card"><div class="modal-head"><h3 id="modalTitle">선택</h3><button class="ghost" id="modalClose">×</button></div><div id="modalBody"></div></div></div>
+<script>
+'use strict';
+
+const SAVE_KEY='eight_left_save_v2';
+const NG_KEY='eight_left_ngplus_v1';
+const NPCS=[
+{id:'doyun',name:'도윤',age:29,tag:'침착한 회사원',trait:'analytical',route:['control','lounge','control']},
+{id:'sera',name:'세라',age:25,tag:'말이 빠른 대학원생',trait:'sharp',route:['lounge','medical','storage']},
+{id:'minjae',name:'민재',age:31,tag:'무뚝뚝한 정비사',trait:'practical',route:['maintenance','storage','maintenance']},
+{id:'narin',name:'나린',age:24,tag:'눈치 빠른 취준생',trait:'social',route:['dorm','lounge','dorm']},
+{id:'taeo',name:'태오',age:27,tag:'능글맞은 영업직',trait:'slick',route:['lounge','storage','control']},
+{id:'jihoo',name:'지후',age:33,tag:'원칙적인 간호사',trait:'careful',route:['medical','dorm','medical']},
+{id:'arin',name:'아린',age:26,tag:'조용한 프리랜서',trait:'quiet',route:['dorm','control','lounge']}
+];
+const ROOMS={
+control:{name:'통제실',desc:'출입 로그와 CCTV 릴레이가 있다.'},medical:{name:'의무실',desc:'약품 캐비닛과 응급 장비가 있다.'},storage:{name:'창고',desc:'공구와 비상 물자가 쌓여 있다.'},maintenance:{name:'발전실',desc:'전력 패널과 노출 배선이 있다.'},lounge:{name:'라운지',desc:'공용 물과 식량이 놓여 있다.'},dorm:{name:'숙소',desc:'개인 소지품과 침상이 있다.'}
+};
+const METHODS=[
+{id:'livewire',name:'활선 함정',sourceRoom:'storage',sourceItem:'절연 니퍼',setupRoom:'maintenance',killRoom:'maintenance',cause:'절연 피복을 벗긴 배선을 접지판에 연결해 감전 사고처럼 위장한다.',needsAlone:true,stealthAcquire:false,stealthSetup:false},
+{id:'sedative',name:'진정제 과다',sourceRoom:'medical',sourceItem:'고농도 진정제',setupRoom:'lounge',killRoom:'dorm',cause:'공용 물병에 진정제를 섞고, 피해자가 혼자 잠든 뒤 호흡 저하를 방치한다.',needsAlone:false,stealthAcquire:true,stealthSetup:true},
+{id:'lockin',name:'밀폐 구역 잠금',sourceRoom:'control',sourceItem:'수동 잠금 키',setupRoom:'control',killRoom:'maintenance',cause:'발전실 환기 셔터를 수동 잠금하고 비상 해제 장치를 끊는다.',needsAlone:true,stealthAcquire:true,stealthSetup:true}
+];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+function makeRng(seed){let t=seed>>>0;return()=>{t+=0x6D2B79F5;let x=t;x=Math.imul(x^x>>>15,x|1);x^=x+Math.imul(x^x>>>7,x|61);return((x^x>>>14)>>>0)/4294967296}}
+function pickR(r,a){return a[Math.floor(r()*a.length)]}
+function shuffleR(r,a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+let state=null,activeTab='facts',selectedMode='normal';
+
+function freshState(name,mode){
+  const seed=(Date.now()^(Math.random()*0xffffffff))>>>0,r=makeRng(seed),order=shuffleR(r,NPCS.map(n=>n.id));
+  const traitor=order[0], method1=pickR(r,METHODS), method2=pickR(r,METHODS.filter(m=>m.id!==method1.id)), firstVictim=victimForMethod(r,method1,traitor,[]), secondVictim=victimForMethod(r,method2,traitor,[firstVictim]);
+  const participants=[{id:'player',name,age:'?',tag:mode==='traitor'?'숨겨진 공범':'일반 참가자',trait:'player',alive:true,trust:0,suspicion:0,isPlayer:true,knowledge:[]},...NPCS.map((n,i)=>({...n,alive:true,trust:Math.floor(r()*3)-1,suspicion:0,isPlayer:false,knowledge:[],privateFear:pickR(r,['혼자 남는 것','다수결','밀폐 공간','누명을 쓰는 것']),honesty:n.id===traitor?0.25:0.82}))];
+  return {version:'2.1',seed,mode,playerName:name,round:1,slot:1,phase:'briefing',time:1260,suspicion:0,participants,traitor,plans:[buildPlan(1,method1,firstVictim),buildPlan(2,method2,secondVictim)],world:{items:{},evidence:[],hazards:[],bodies:[]},facts:[],timeline:[],log:[],votes:[],pending:null,cleared:false,incidents:[],runNotes:[],startedAt:Date.now()};
+}
+function victimForMethod(r,method,traitorId,exclude){const pool=NPCS.filter(n=>n.id!==traitorId&&!exclude.includes(n.id));const preferred=pool.filter(n=>n.route[2]===method.killRoom);return (preferred[0]||pickR(r,pool)).id}
+function buildPlan(round,method,victim){return{round,methodId:method.id,victim,stage:0,blocked:0,armed:false,resolved:false,chain:[]}}
+function npc(id){return state.participants.find(p=>p.id===id)}
+function aliveAll(){return state.participants.filter(p=>p.alive)}
+function aliveNPCs(){return state.participants.filter(p=>p.alive&&!p.isPlayer)}
+function traitor(){return npc(state.traitor)}
+function currentPlan(){return state.plans.find(p=>p.round===state.round)}
+function methodFor(plan){return METHODS.find(m=>m.id===plan?.methodId)}
+function roomName(id){return ROOMS[id]?.name||id}
+function fmtTime(){const h=Math.floor(state.time/60)%24,m=state.time%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`}
+function showScreen(id){$$('.screen').forEach(x=>x.classList.remove('active'));$(id).classList.add('active')}
+function addLog(text){state.log.unshift({t:fmtTime(),text});state.log=state.log.slice(0,120)}
+function saveGame(toastIt=true){if(!state)return;localStorage.setItem(SAVE_KEY,JSON.stringify(state));if(toastIt)toast('저장됨')}
+function loadGame(){try{return JSON.parse(localStorage.getItem(SAVE_KEY)||'null')}catch{return null}}
+function clearSave(){localStorage.removeItem(SAVE_KEY)}
+function hasNG(){return localStorage.getItem(NG_KEY)==='1'}
+function unlockNG(){localStorage.setItem(NG_KEY,'1')}
+function toast(text){const d=document.createElement('div');d.textContent=text;Object.assign(d.style,{position:'fixed',left:'50%',bottom:'24px',transform:'translateX(-50%)',padding:'10px 14px',border:'1px solid #3b4658',borderRadius:'10px',background:'#121720',color:'#fff',zIndex:99,boxShadow:'0 10px 30px #0008'});document.body.appendChild(d);setTimeout(()=>d.remove(),1300)}
+function addFact(fact,shareWith='player'){
+  const id=fact.id||`${fact.type}|${fact.round}|${fact.slot}|${fact.subject||''}|${fact.object||''}|${fact.room||''}`;
+  if(shareWith==='player'&&!state.facts.some(f=>f.id===id))state.facts.push({...fact,id});
+  if(shareWith&&shareWith!=='player'){const p=npc(shareWith);if(p&&!p.knowledge.some(f=>f.id===id))p.knowledge.push({...fact,id})}
+}
+function spreadFact(fact,ids){ids.forEach(id=>addFact(fact,id));}
+function factWeightFor(f,candidate){if(f.subject!==candidate&&f.object!==candidate)return 0;switch(f.type){case'direct_crime':return 10;case'tool_take':return 5;case'contradiction':return 3.5;case'crime_presence':return 3;case'frame':return 2.2;case'alibi':return-3.8;default:return 0}}
+function scoreKnowledge(knowledge,candidate){let score=knowledge.reduce((s,f)=>s+factWeightFor(f,candidate),0);const physical=knowledge.filter(f=>f.type==='physical');const sightings=knowledge.filter(f=>f.type==='saw'&&f.subject===candidate);for(const e of physical){for(const seen of sightings){if(e.round===seen.round&&e.slot===seen.slot&&e.room===seen.room)score+=2.8}}return score}
+function modifyTrust(id,d){const p=npc(id);if(p)p.trust=clamp((p.trust||0)+d,-5,5)}
+
+function render(){if(!state)return;$('#roundStat').textContent=`${state.round} / 3`;$('#slotStat').textContent=state.phase==='trial'?'심판':`${state.slot} / 3`;$('#timeStat').textContent=fmtTime();$('#aliveStat').textContent=aliveAll().length;$('#suspicionStat').textContent=state.suspicion;$('#traitHint').textContent=state.mode==='traitor'?'ROLE: ACCOMPLICE':'ROLE UNKNOWN';renderParticipants();renderNotebook();renderScene()}
+function renderParticipants(){
+ $('#participantList').innerHTML=state.participants.map(p=>`<div class="participant ${p.alive?'':'dead'}"><div class="avatar">${p.name[0]}</div><div><div class="name">${p.name}${p.isPlayer?' <span class="tag">YOU</span>':''}</div><div class="meta">${p.alive?p.tag:'탈락'}</div></div><div class="trust ${(p.trust||0)<0?'neg':''}">${p.isPlayer?'':`${(p.trust||0)>=0?'+':''}${p.trust||0}`}</div></div>`).join('');
+}
+function renderNotebook(){
+ $$('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===activeTab));const body=$('#notebookBody');
+ if(activeTab==='facts'){body.innerHTML=state.facts.length?state.facts.slice().reverse().map(f=>`<div class="note"><b>${f.title}</b><p>${f.text}</p>${f.reliability?`<span class="tag ${f.reliability==='확정'?'green':f.reliability==='의심'?'yellow':''}">${f.reliability}</span>`:''}${f.source?`<span class="tag blue">출처: ${f.source}</span>`:''}</div>`).join(''):'<div class="empty">아직 확인한 사실이 없다.</div>'}
+ if(activeTab==='timeline'){body.innerHTML=state.timeline.length?state.timeline.slice().reverse().map(t=>`<div class="note"><b>R${t.round}-${t.slot} · ${t.time}</b><p>${t.text}</p></div>`).join(''):'<div class="empty">확인된 동선이 없다.</div>'}
+ if(activeTab==='relations'){body.innerHTML=aliveNPCs().map(p=>`<div class="note"><b>${p.name} · 신뢰 ${(p.trust||0)>=0?'+':''}${p.trust||0}</b><p>${relationText(p.trust||0)}</p></div>`).join('')}
+ if(activeTab==='log'){body.innerHTML=state.log.length?state.log.map(l=>`<div class="note"><b>${l.t}</b><p>${l.text}</p></div>`).join(''):'<div class="empty">기록 없음.</div>'}
+}
+function relationText(v){if(v>=4)return'당신에게 중요한 사실도 말할 가능성이 높다.';if(v>=2)return'협력적이다.';if(v>=0)return'아직 판단을 유보한다.';if(v>=-2)return'당신을 경계한다.';return'당신을 강하게 의심한다.'}
+function renderScene(){
+ const title=$('#sceneTitle'),text=$('#sceneText'),area=$('#actionArea'),chip=$('#phaseChip'),ch=$('#chapterLabel');ch.textContent=`ROUND ${state.round}`;
+ if(state.phase==='briefing'){title.textContent=state.round===1?'첫 번째 규칙':'새로운 규칙';chip.textContent='브리핑';text.innerHTML=briefingHtml();area.innerHTML=`<button class="primary big" id="beginSlot">행동 계획 세우기</button>`;$('#beginSlot').onclick=()=>{state.phase='plan';render()}}
+ else if(state.phase==='plan'){title.textContent=`${fmtTime()} 행동 계획`;chip.textContent='계획';text.innerHTML=planHtml();area.innerHTML=`<button class="primary big" id="chooseMove">이동할 장소 선택</button>`;$('#chooseMove').onclick=openMovePlanner}
+ else if(state.phase==='result'){title.textContent='이번 시간대의 결과';chip.textContent='결과';text.innerHTML=state.pending?.html||'<p>특이사항 없음.</p>';area.innerHTML=resultActionsHtml();bindResultActions()}
+ else if(state.phase==='trial'){title.textContent=`제 ${state.round}차 심판`;chip.textContent='투표';text.innerHTML=trialHtml();area.innerHTML=`<button class="primary big" id="voteBtn">투표하기</button>`;$('#voteBtn').onclick=openVote}
+ else if(state.phase==='round_report'){title.textContent='사건 정리';chip.textContent='보고';text.innerHTML=roundReportHtml();area.innerHTML=`<button class="primary big" id="nextRound">${state.round>=3?'최종 결과 확인':'다음 라운드'}</button>`;$('#nextRound').onclick=advanceRound}
+}
+function briefingHtml(){
+ const msg=state.round===1?'세 시간 뒤 첫 심판이 열린다. 각 참가자는 매 시간대마다 자신이 갈 곳을 공개한다. 하지만 실제로 그 약속을 지킬 의무는 없다.':state.round===2?'첫 심판 이후 시설이 부분 폐쇄됐다. 누군가 비상 설비를 건드린 흔적이 있다. 남은 사람들은 더 이상 서로의 이동 약속을 곧이곧대로 믿지 않는다.':'마지막 심판이다. 운영진은 “배신자가 살아 있으면 출구는 열리지 않는다”고 통보했다. 이제 남은 세 시간대가 전부다.';
+ return `<p>${msg}</p><p class="system">이번 버전에서 사망은 랜덤 판정이 아니다. <b>도구 확보 → 범행 준비 → 피해자 노출 → 구조 여부</b>가 실제로 이어져야 사건이 성립한다.</p>`
+}
+function declaredRoom(p){
+ if(p.isPlayer)return null;const base=p.route[(state.slot-1)%p.route.length];if(p.id===state.traitor){const plan=currentPlan(),m=methodFor(plan);if(plan&&!plan.resolved){if(plan.stage===0)return p.trait==='slick'?'lounge':base;if(plan.stage===1)return base;}}
+ return base;
+}
+function actualRoomForNPC(p,companionId,playerRoom){
+ if(p.id===companionId)return playerRoom;const plan=currentPlan(),m=methodFor(plan);
+ if(p.id===state.traitor&&plan&&!plan.resolved){if(plan.stage===0)return m.sourceRoom;if(plan.stage===1)return m.setupRoom;if(plan.stage>=2)return declaredRoom(p)}
+ if(plan&&p.id===plan.victim&&plan.stage>=2&&state.slot===3)return m.killRoom;
+ return p.route[(state.slot-1)%p.route.length];
+}
+function planHtml(){
+ const rows=aliveNPCs().map(p=>`<div class="schedule-row"><b>${p.name}</b><span>${roomName(declaredRoom(p))}</span><em>${p.id===state.traitor?'공개 예정':'공개 예정'}</em></div>`).join('');
+ return `<p>각 참가자가 다음 시간대에 갈 곳을 공개했다. 이건 <b>약속일 뿐, 실제 동선이 아니다.</b></p><div class="schedule">${rows}</div><p class="system warnbox">누군가를 동행자로 데려가면 그 사람의 실제 동선을 바꿀 수 있다. 사건을 막을 수도, 반대로 중요한 목격을 놓칠 수도 있다.</p>`
+}
+function openMovePlanner(){
+ const rooms=Object.entries(ROOMS).map(([id,r])=>`<button class="room-btn" data-room="${id}"><b>${r.name}</b><small>${r.desc}</small></button>`).join('');
+ openModal('어디로 갈까?',`<div class="room-grid">${rooms}</div><div class="divider"></div><p class="micro">장소를 고르면 동행자를 선택할 수 있다.</p>`);$$('[data-room]').forEach(b=>b.onclick=()=>{const room=b.dataset.room;openCompanion(room)})
+}
+function openCompanion(room){
+ const people=aliveNPCs().map(p=>`<button class="person-btn" data-comp="${p.id}"><b>${p.name}</b><small>신뢰 ${(p.trust||0)>=0?'+':''}${p.trust||0} · ${p.tag}</small></button>`).join('');
+ openModal('동행자를 정할까?',`<p class="micro">선택한 장소: <b>${roomName(room)}</b></p><div class="choice-list"><button class="person-btn" data-comp=""><b>혼자 간다</b><small>누구의 동선도 바꾸지 않는다.</small></button>${people}</div>`);$$('[data-comp]').forEach(b=>b.onclick=()=>{closeModal();resolveSlot(room,b.dataset.comp||null)})
+}
+function resolveSlot(playerRoom,companionId){
+ const alive=aliveNPCs(),locations={player:playerRoom},declarations={};alive.forEach(p=>declarations[p.id]=declaredRoom(p));alive.forEach(p=>locations[p.id]=actualRoomForNPC(p,companionId,playerRoom));
+ const companion=companionId?npc(companionId):null;if(companion&&companion.trust<=-3){locations[companionId]=declaredRoom(companion);companionId=null;addLog(`${companion.name}이 동행 요청을 거절했다.`)}
+ const present={};Object.keys(ROOMS).forEach(r=>present[r]=[]);present[playerRoom].push('player');alive.forEach(p=>{if(p.alive)present[locations[p.id]].push(p.id)});
+ if(companionId){
+   const cp=npc(companionId);
+   modifyTrust(companionId,1);
+   const alibi={id:`alibi|${state.round}|${state.slot}|player|${companionId}`,type:'alibi',round:state.round,slot:state.slot,subject:'player',object:companionId,room:playerRoom,title:'상호 동행 알리바이',text:`${fmtTime()} ${state.playerName}와 ${cp.name}은 ${roomName(playerRoom)}에서 함께 행동했다.`,reliability:'확정',source:cp.name};
+   addFact(alibi,companionId);
+   addFact(alibi);
+ }
+ const seenHere=present[playerRoom].filter(id=>id!=='player').map(id=>npc(id)?.name).filter(Boolean);
+ const movementFact={type:'movement',round:state.round,slot:state.slot,room:playerRoom,title:'현장 동선',text:`${fmtTime()} ${roomName(playerRoom)}에서 ${seenHere.length?seenHere.join(', '):'아무도'}를 직접 봤다.`,reliability:'확정',source:'직접 목격'};addFact(movementFact);
+ state.timeline.push({round:state.round,slot:state.slot,time:fmtTime(),text:`당신 → ${roomName(playerRoom)}${companionId?` / 동행: ${npc(companionId).name}`:''}. 현장에서 ${seenHere.length?seenHere.join(', '):'아무도'} 확인.`});
+ spreadMutualSight(present,locations);
+ const crime=advanceTraitorPlan(present,locations);
+ recordContradictions(present,locations,companionId,declarations);
+ discoverEvidenceForNPCs(present);
+ const found=discoverRoomEvidence(playerRoom);
+ const incident=resolveHazardIfAny(playerRoom,present,locations);
+ let html=`<p><b>${roomName(playerRoom)}</b>로 이동했다. ${seenHere.length?`${seenHere.join(', ')}도 이곳에 있었다.`:'당신 외에는 아무도 없었다.'}</p>`;
+ if(crime.playerSaw)html+=`<p class="system warnbox">${crime.playerSaw}</p>`;
+ if(found.length)html+=`<p class="system">${found.map(x=>`<b>${x.title}</b> — ${x.text}`).join('<br>')}</p>`;
+ if(incident.html)html+=incident.html;
+ if(!crime.playerSaw&&!found.length&&!incident.html)html+=`<p class="system goodbox">직접 확인할 만한 사건은 없었다. 하지만 다른 방에서는 누군가가 움직이고 있다.</p>`;
+ state.pending={html,people:present[playerRoom].filter(id=>id!=='player'&&npc(id)?.alive),asked:false};state.phase='result';state.time+=25;addLog(`${roomName(playerRoom)} 이동`);saveGame(false);render();
+}
+function spreadMutualSight(present,locations){
+ Object.entries(present).forEach(([room,ids])=>{ids.forEach(a=>{if(a==='player')return;ids.forEach(b=>{if(a===b)return;const fact={id:`saw|${state.round}|${state.slot}|${a}|${b}|${room}`,type:'saw',round:state.round,slot:state.slot,subject:b,room,title:'목격',text:`${npc(a).name}은 ${fmtTime()} ${roomName(room)}에서 ${b==='player'?state.playerName:npc(b).name}를 봤다.`,reliability:'확정'};addFact(fact,a)})})})
+}
+function recordContradictions(present,locations,companionId,declarations){
+ aliveNPCs().forEach(p=>{if(p.id===companionId)return;const declared=declarations[p.id],actual=locations[p.id];if(!declared||declared===actual)return;const witnesses=(present[actual]||[]).filter(id=>id!==p.id);const fact={id:`contradiction|${state.round}|${state.slot}|${p.id}|${actual}`,type:'contradiction',round:state.round,slot:state.slot,subject:p.id,room:actual,title:'공개 동선과 모순',text:`${p.name}은 ${roomName(declared)}에 가겠다고 했지만 ${fmtTime()} ${roomName(actual)}에서 목격됐다.`,reliability:'확정'};witnesses.forEach(w=>{if(w==='player')addFact({...fact,source:'직접 목격'});else addFact(fact,w)})})
+}
+function discoverEvidenceForNPCs(present){
+ state.world.evidence.forEach(e=>{const ids=(present[e.room]||[]).filter(id=>id!=='player');ids.forEach(id=>{addFact({id:`${e.id}|known|${id}`,type:'physical',round:e.round,slot:e.slot,subject:null,room:e.room,title:e.title,text:e.text,reliability:'확정'},id)})})
+}
+function advanceTraitorPlan(present,locations){
+ const plan=currentPlan();if(!plan||plan.resolved||!npc(state.traitor)?.alive)return{playerSaw:null};const m=methodFor(plan),t=npc(state.traitor),where=locations[t.id];let playerSaw=null;
+ if(plan.stage===0&&where===m.sourceRoom){
+   const witnesses=present[where].filter(id=>id!==t.id),playerWitness=witnesses.includes('player'),canTake=witnesses.length===0||(m.stealthAcquire&&!playerWitness);if(canTake){plan.stage=1;state.world.items[m.sourceItem]=t.id;plan.chain.push(`${fmtTime()} ${t.name}이 ${roomName(where)}에서 ${m.sourceItem} 확보`);state.world.evidence.push({id:`cabinet-${state.round}`,room:where,title:'비어 있는 보관함',text:`${m.sourceItem}이 있던 자리가 비어 있다. 잠금장치는 정상이다.`,subject:null,type:'physical',round:state.round,slot:state.slot});const noticed=witnesses.filter(w=>w!=='player'&&['sharp','analytical','careful'].includes(npc(w)?.trait));noticed.forEach(w=>addFact({id:`take-watch-${state.round}-${state.slot}-${w}`,type:'crime_presence',round:state.round,slot:state.slot,subject:t.id,room:where,title:'보관함 근처의 수상한 행동',text:`${npc(w).name}은 ${t.name}이 ${m.sourceItem} 보관함 쪽에서 손을 움직이는 것을 봤다.`,reliability:'주장'},w));addLog('어딘가에서 물품 하나가 사라졌다.')}else{plan.blocked++;plan.chain.push(`${fmtTime()} ${m.sourceItem} 확보 시도 실패 — 목격자 존재`);{const watchFact={id:`cabinet-watch-${state.round}-${state.slot}`,type:'crime_presence',round:state.round,slot:state.slot,subject:t.id,room:where,title:'보관함 앞의 수상한 행동',text:`${t.name}이 잠긴 보관함을 만지다가 사람이 들어오자 손을 뗐다.`,reliability:'확정'};witnesses.forEach(w=>{if(w==='player'){playerSaw=`${t.name}이 보관함 앞에서 손을 멈췄다. 당신이 들어오자 아무것도 꺼내지 않고 물러났다.`;addFact({...watchFact,source:'직접 목격'})}else addFact(watchFact,w)})}}
+ }
+ else if(plan.stage===1&&where===m.setupRoom){
+   const witnesses=present[where].filter(id=>id!==t.id),playerWitness=witnesses.includes('player'),hasItem=state.world.items[m.sourceItem]===t.id,canSetup=hasItem&&(witnesses.length===0||(m.stealthSetup&&!playerWitness));if(canSetup){plan.stage=2;plan.armed=true;state.world.hazards.push({id:`hazard-${state.round}`,room:m.killRoom,method:m.id,owner:t.id,armed:true,round:state.round});plan.chain.push(`${fmtTime()} ${t.name}이 ${roomName(where)}에서 ${m.name} 준비 완료`);state.world.evidence.push({id:`setup-${state.round}`,room:where,title:'설비 조작 흔적',text:`정상 절차와 다른 수동 조작 흔적이 남아 있다. 도구 자국은 최근 것이다.`,subject:null,type:'physical',round:state.round,slot:state.slot});const noticed=witnesses.filter(w=>w!=='player'&&['sharp','analytical','careful'].includes(npc(w)?.trait));noticed.forEach(w=>addFact({id:`setup-watch-${state.round}-${state.slot}-${w}`,type:'crime_presence',round:state.round,slot:state.slot,subject:t.id,room:where,title:'설비 근처의 수상한 행동',text:`${npc(w).name}은 ${t.name}이 ${roomName(where)} 설비를 오래 만지는 것을 봤다.`,reliability:'주장'},w));addLog('시설 설비 일부가 조작됐다.')}else{plan.blocked++;plan.chain.push(`${fmtTime()} 범행 준비 실패 — ${witnesses.length?'사람이 곁에 있었음':'필요 물품 없음'}`);{const prepFact={id:`directprep-${state.round}-${state.slot}`,type:'direct_crime',round:state.round,slot:state.slot,subject:t.id,room:where,title:'수상한 설비 조작',text:`${t.name}이 ${roomName(where)} 패널을 정상 절차 없이 조작하는 장면이 목격됐다.`,reliability:'확정'};witnesses.forEach(w=>{if(w==='player'){playerSaw=`${t.name}이 패널 안쪽을 만지고 있었다. 당신을 보자 “고장 난 건가 봐”라고 둘러댔다.`;addFact({...prepFact,source:'직접 목격'})}else addFact(prepFact,w)})}}
+ }
+ return{playerSaw}
+}
+function discoverRoomEvidence(room){
+ const list=state.world.evidence.filter(e=>e.room===room&&!e.discovered);list.forEach(e=>{e.discovered=true;addFact({id:e.id,type:e.type,round:e.round,slot:e.slot,subject:e.subject,room:e.room,title:e.title,text:e.text,reliability:'확정',source:'현장 조사'})});return list
+}
+function resolveHazardIfAny(playerRoom,present,locations){
+ const plan=currentPlan();if(!plan||plan.resolved||!plan.armed||state.slot!==3)return{html:''};const m=methodFor(plan),victim=npc(plan.victim);if(!victim?.alive)return{html:''};const victimRoom=locations[victim.id];if(victimRoom!==m.killRoom)return{html:''};
+ const roomPeople=present[m.killRoom].filter(id=>id!==victim.id),helpers=roomPeople.filter(id=>id!=='player'&&id!==state.traitor),playerThere=roomPeople.includes('player'),jihooThere=roomPeople.includes('jihoo');let saved=false,reason='';
+ if(m.id==='sedative'){if(playerThere||jihooThere||helpers.length){saved=true;reason=jihooThere?'지후가 호흡 저하를 즉시 알아챘다.':'곁에 있던 사람이 이상 증상을 발견해 응급 처치를 했다.'}}
+ else if(m.needsAlone&&(playerThere||helpers.length)){saved=true;reason='혼자가 아니어서 즉시 위험을 발견하고 비상 차단을 할 수 있었다.'}
+ plan.resolved=true;plan.chain.push(`${fmtTime()} ${victim.name}이 ${roomName(m.killRoom)}에 도착`);
+ if(saved){plan.chain.push(`${fmtTime()} 구조 성공 — ${reason}`);state.incidents.push({round:state.round,victim:victim.id,method:m.id,outcome:'saved',reason});addLog(`${victim.name} 구조 성공`);const fact={id:`attempt-${state.round}`,type:'physical',round:state.round,slot:state.slot,subject:null,room:m.killRoom,title:'살해 시도 흔적',text:`${m.cause} 흔적이 발견됐지만 ${victim.name}은 살아남았다.`,reliability:'확정',source:'사건 현장'};addFact(fact);spreadFact(fact,aliveNPCs().map(p=>p.id));return{html:`<p class="system goodbox"><b>사건 발생 — 생존</b><br>${victim.name}에게 치명적인 위험이 발생했지만 구조됐다. ${reason}</p>`}}
+ victim.alive=false;plan.chain.push(`${fmtTime()} 구조자 없음 — ${victim.name} 사망`);state.incidents.push({round:state.round,victim:victim.id,method:m.id,outcome:'dead',reason:'구조자 없음'});state.world.bodies.push({victim:victim.id,room:m.killRoom,round:state.round});addLog(`${victim.name} 사망`);const deathFact={id:`death-${state.round}`,type:'physical',round:state.round,slot:state.slot,subject:null,room:m.killRoom,title:`${victim.name} 사망 원인`,text:`사인은 ${m.name}. 현장 상태상 ${m.cause}`,reliability:'확정',source:'현장'};addFact(deathFact);spreadFact(deathFact,aliveNPCs().map(p=>p.id));return{html:`<p class="system"><b>사망자 발생 — ${victim.name}</b><br>${victim.name}은 ${roomName(m.killRoom)}에서 발견됐다. 사인은 ${m.name}. 우연한 사고처럼 보이지만 현장에는 인위적인 조작 흔적이 남아 있다.</p>`}
+}
+function resultActionsHtml(){
+ const people=state.pending?.people||[],talk=!state.pending?.asked&&people.length;return `${talk?'<button class="secondary big" id="questionBtn">같은 방 사람에게 질문하기</button>':''}<button class="primary big" id="continueSlot">${state.slot>=3?'심판으로 이동':'다음 시간대'}</button>`
+}
+function bindResultActions(){
+ $('#questionBtn')?.addEventListener('click',openQuestion);$('#continueSlot').onclick=()=>{if(state.slot>=3){state.phase='trial'}else{state.slot++;state.phase='plan'}state.pending=null;saveGame(false);render()}
+}
+function openQuestion(){
+ const people=(state.pending?.people||[]).filter(id=>npc(id)?.alive);openModal('누구에게 물어볼까?',`<div class="choice-list">${people.map(id=>{const p=npc(id);return`<button class="person-btn" data-q="${id}"><b>${p.name}</b><small>신뢰 ${(p.trust||0)>=0?'+':''}${p.trust||0}</small></button>`}).join('')}</div>`);$$('[data-q]').forEach(b=>b.onclick=()=>openQuestionType(b.dataset.q))
+}
+function openQuestionType(id){
+ const p=npc(id);openModal(`${p.name}에게 질문`, `<div class="choice-list"><button class="choice-btn" data-qt="where"><b>“아까 어디 있었어?”</b><small>동선 확인</small></button><button class="choice-btn" data-qt="know"><b>“뭔가 본 거 있어?”</b><small>목격 정보 확인</small></button><button class="choice-btn" data-qt="suspect"><b>“누가 제일 수상해?”</b><small>현재 의심 확인</small></button></div>`);$$('[data-qt]').forEach(b=>b.onclick=()=>{closeModal();answerQuestion(id,b.dataset.qt)})
+}
+function answerQuestion(id,type){
+ const p=npc(id),isT=id===state.traitor;let text='';
+ if(type==='where'){
+   const ownSight=p.knowledge.filter(f=>f.type==='saw'&&f.subject!==id&&f.round===state.round).slice(-1)[0];const actual=state.timeline.find(()=>false);
+   if(isT&&p.honesty<.5){const frame=aliveNPCs().find(x=>x.id!==id);text=`“난 공개한 동선 그대로 움직였어. 오히려 ${frame?.name||'다른 사람'}이 약속한 곳에 없던데?”`;if(frame){const fake={id:`lie-${state.round}-${state.slot}-${id}`,type:'frame',round:state.round,slot:state.slot,subject:frame.id,title:`${p.name}의 주장`,text:`${p.name}은 ${frame.name}이 공개 동선을 어겼다고 주장했다.`,reliability:'의심',source:p.name};addFact(fake)}}else{text=`“내가 있던 곳에서 특별한 건 없었어.${ownSight?` ${ownSight.text.replace(`${p.name}은 `,'')}`:''}”`}
+ } else if(type==='know'){
+   const facts=p.knowledge.filter(f=>['direct_crime','physical','saw'].includes(f.type));if(facts.length&&p.trust>=0){const f=facts[facts.length-1];text=`“확실한 건 하나 있어. ${f.text}”`;addFact({...f,source:p.name,reliability:f.reliability||'주장'});modifyTrust(id,1)}else{text=p.trust<0?'“아직 너한테 말할 정도로 믿진 않아.”':'“직접 봤다고 할 만한 건 없어.”'}
+ } else {
+   const scores={};aliveAll().filter(x=>x.id!==id).forEach(c=>{let s=scoreKnowledge(p.knowledge,c.id);if(c.isPlayer){s+=state.suspicion*.35;s-=Math.max(0,p.trust||0)*.45;s+=Math.max(0,-(p.trust||0))*.5}scores[c.id]=s});const top=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];const target=npc(top?.[0]);text=target?`“지금 굳이 한 명 고르라면 ${target.name}. 내가 아는 사실들을 맞춰보면 그쪽이 제일 설명이 안 돼.”`:'“아직 모르겠어.”';
+ }
+ state.pending.asked=true;addLog(`${p.name}에게 질문`);openModal(`${p.name}의 답`,`<p>${text}</p><button class="primary big" id="qok">확인</button>`);$('#qok').onclick=()=>{closeModal();saveGame(false);render()}
+}
+function trialHtml(){
+ const incident=state.incidents.find(i=>i.round===state.round);const incidentText=incident?(incident.outcome==='dead'?`${npc(incident.victim)?.name||'참가자'}가 사망했다.`:`${npc(incident.victim)?.name||'참가자'}에 대한 살해 시도가 실패했다.`):'이번 라운드에는 확인된 사망 사건이 없었다.';
+ const alibiWitnesses=aliveNPCs().filter(p=>p.knowledge.some(f=>f.type==='alibi'&&f.subject==='player'&&f.round===state.round)).sort((a,b)=>(b.trust||0)-(a.trust||0));
+ const testimony=alibiWitnesses.length?`<p><span class="quote">${alibiWitnesses[0].name}</span> “적어도 내가 같이 움직인 시간대에는 ${state.playerName}이 혼자 뭘 꾸밀 상황은 아니었어. 그건 내가 증언할 수 있어.”</p>`:'';
+ return `<p>${incidentText} 이제 각자 자신이 아는 사실만으로 표를 던진다.</p><p class="system">NPC 투표는 <b>개인이 실제로 알고 있는 단서 + 플레이어와의 신뢰 + 직접 확인한 알리바이 + 모순된 증언</b>으로 계산된다.</p>${testimony}${state.facts.slice(-4).map(f=>`<p><span class="quote">• ${f.title}</span> — ${f.text}</p>`).join('')}`
+}
+function openVote(){
+ const cands=aliveNPCs();openModal('누구를 격리할까?',`<p class="micro">표를 던지면 되돌릴 수 없다.</p><div class="choice-list">${cands.map(p=>`<button class="choice-btn" data-vote="${p.id}"><b>${p.name}</b><small>${p.tag}</small></button>`).join('')}</div>`);$$('[data-vote]').forEach(b=>b.onclick=()=>{closeModal();resolveVote(b.dataset.vote)})
+}
+function npcVote(voter){
+ const candidates=aliveAll().filter(c=>c.id!==voter.id);let best=null,bestScore=-999;
+ for(const c of candidates){
+   let s=scoreKnowledge(voter.knowledge,c.id);
+   if(c.isPlayer){
+     s+=state.suspicion*.5;
+     // voter.trust는 '이 NPC가 플레이어를 얼마나 믿는가'다.
+     // 예전 버전은 이 값을 NPC 후보의 평판처럼 잘못 사용해 플레이어가 기본 표적이 되는 문제가 있었다.
+     s-=Math.max(0,voter.trust||0)*.7;
+     s+=Math.max(0,-(voter.trust||0))*.75;
+   }
+   if(voter.id===state.traitor){
+     if(c.id===state.traitor)s-=99;
+     const dangerous=c.knowledge.some(f=>f.type==='direct_crime'&&f.subject===state.traitor);
+     if(dangerous)s+=4;
+   }
+   s+=tieBias(voter.id,c.id);
+   if(s>bestScore){bestScore=s;best=c}
+ }
+ return best?.id||candidates[0].id
+}
+function tieBias(a,b){let h=0;for(const ch of `${state.seed}|${state.round}|${a}|${b}`)h=(h*31+ch.charCodeAt(0))>>>0;return(h%100)/1000}
+function resolveVote(playerVote){
+ const tally={};aliveAll().forEach(p=>tally[p.id]=0);tally[playerVote]++;aliveNPCs().forEach(v=>{const x=npcVote(v);tally[x]=(tally[x]||0)+1});
+ const ranked=Object.entries(tally).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));const eliminated=npc(ranked[0][0]),max=ranked[0][1],lines=ranked.filter(x=>x[1]>0).map(([id,v])=>`${npc(id).name} ${v}표`).join(' · ');state.votes.push({round:state.round,tally,playerVote,eliminated:eliminated.id});addLog(`투표: ${eliminated.name} 격리`);
+ if(eliminated.isPlayer){endGame('DEAD END','다수결',`당신은 ${max}표로 격리됐다. 이번 판의 원인은 운이 아니라, 다른 참가자들이 당신을 의심하도록 쌓인 행동과 정보였다.`,false);return}
+ eliminated.alive=false;const reveal=eliminated.id===state.traitor?'격리 직전, 그의 손목 밴드 안쪽에서 운영용 인증 칩이 발견됐다.':'결정적인 운영진 장비는 발견되지 않았다.';openModal('투표 결과',`<p><b>${lines}</b></p><p>${eliminated.name}이 격리됐다. ${reveal}</p><button class="primary big" id="voteOk">사건 정리</button>`);$('#voteOk').onclick=()=>{closeModal();state.phase='round_report';saveGame(false);render()}
+}
+function roundReportHtml(){
+ const p=currentPlan(),m=methodFor(p);const hiddenName=traitor()?.name||'';const steps=p?`<div class="cause-chain">${p.chain.map(x=>`<div class="cause-step">${hiddenName?x.split(hiddenName).join('누군가'):x}</div>`).join('')||'<div class="cause-step">범행 계획이 시작되기 전에 끊겼다.</div>'}</div>`:'';
+ const traitAlive=npc(state.traitor)?.alive;return `<p>이 라운드에서 실제로 발생한 인과관계를 정리한다. 플레이 중에는 숨겨져 있던 정보도 여기서는 <b>사건 구조만</b> 보여주고 범인의 이름은 공개하지 않는다.</p><p class="system"><b>범행 방식:</b> ${m?.name||'없음'}<br><b>계획 상태:</b> ${p?.resolved?'결과 발생':p?.stage===0?'도구 확보 전':p?.stage===1?'도구 확보 후':p?.stage===2?'함정 준비 완료':'중단'}<br><b>방해 횟수:</b> ${p?.blocked||0}</p>${steps}<p class="micro">현재 배신자 생존 여부는 ${traitAlive?'확인되지 않음':'격리된 사람 중에 있을 수 있음'}.</p>`
+}
+function advanceRound(){
+ if(state.round>=3){resolveFinal();return}state.round++;state.slot=1;state.phase='briefing';state.pending=null;state.time+=70;saveGame(false);render()
+}
+function resolveFinal(){
+ const tAlive=npc(state.traitor)?.alive;const strong=state.facts.filter(f=>f.subject===state.traitor&&['direct_crime','tool_take','contradiction','physical'].includes(f.type)).length;const deaths=state.incidents.filter(i=>i.outcome==='dead').length;
+ if(state.mode==='traitor'){
+   if(tAlive){endGame('NG+ END','공범 생존','당신은 끝까지 범행을 돕는 쪽에 섰다. 이번 판에서 살아남은 것은 운이 아니라, 누가 어디로 가는지 알고 있었기 때문이다.',true)}else endGame('NG+ DEAD','공범 실패','배신자가 먼저 격리되면서 공범의 역할도 드러났다.',false);return
+ }
+ if(!tAlive){if(deaths===0)endGame('TRUE END','아무도 죽지 않은 밤','배신자를 격리했고, 모든 살해 계획을 중간에서 끊었다. 출구가 열릴 때까지 사망자는 한 명도 나오지 않았다.',true);else endGame('GOOD END','원인을 끊다',`사망자 ${deaths}명이 발생했지만 결국 배신자를 격리했다. 남은 사람들은 사건이 어떻게 가능했는지까지 확인한 뒤 밖으로 나왔다.`,true)}
+ else if(strong>=2)endGame('ENDING C','증거는 있었지만','배신자를 가리키는 단서는 충분히 모였지만 마지막 표가 모이지 않았다. 출구는 열리지 않았고, 누군가는 아직 안쪽에 남아 있다.',false);else endGame('BAD END','보지 못한 연결','각각의 단서는 있었지만 하나의 사건으로 연결하지 못했다. 마지막 방송 뒤 시설 전체가 잠겼다.',false)
+}
+function endGame(code,title,body,clear){state.ending={code,title,body};state.cleared=clear;if(clear)unlockNG();clearSave();$('#endingCode').textContent=code;$('#endingTitle').textContent=title;$('#endingText').textContent=body;$('#endingStats').innerHTML=`<div><span>생존자</span><b>${aliveAll().length}</b></div><div><span>사망자</span><b>${state.incidents.filter(i=>i.outcome==='dead').length}</b></div><div><span>확인 사실</span><b>${state.facts.length}</b></div><div><span>방해 성공</span><b>${state.plans.reduce((n,p)=>n+p.blocked,0)}</b></div>`;$('#ngPlusBtn').classList.toggle('hidden',!hasNG());showScreen('#endingScreen')}
+function openModal(title,html){$('#modalTitle').textContent=title;$('#modalBody').innerHTML=html;$('#modal').classList.remove('hidden')}
+function closeModal(){$('#modal').classList.add('hidden')}
+function boot(){
+ const saved=loadGame();$('#continueBtn').classList.toggle('hidden',!saved);const ng=hasNG();$('#traitorMode').classList.toggle('locked',!ng);$('#traitorMode').querySelector('small').textContent=ng?'공범 모드':'???';
+ $$('.mode').forEach(m=>m.onclick=()=>{if(m.classList.contains('locked')){toast('클리어 후 해금');return}selectedMode=m.dataset.mode;$$('.mode').forEach(x=>x.classList.toggle('selected',x===m))});
+ $('#startBtn').onclick=()=>{const name=$('#playerName').value.trim()||'린';state=freshState(name,selectedMode);addLog('시설에서 의식을 되찾았다.');showScreen('#gameScreen');saveGame(false);render()};
+ $('#continueBtn').onclick=()=>{state=saved;showScreen('#gameScreen');render()};$('#saveBtn').onclick=()=>state&&saveGame(true);$('#resetBtn').onclick=()=>{if(confirm('현재 저장을 지우고 타이틀로 돌아갈까?')){clearSave();state=null;showScreen('#titleScreen');boot()}};
+ $$('.tab').forEach(t=>t.onclick=()=>{activeTab=t.dataset.tab;renderNotebook()});$('#modalClose').onclick=closeModal;$('#modal').onclick=e=>{if(e.target.id==='modal')closeModal()};$('#againBtn').onclick=()=>{state=null;showScreen('#titleScreen');boot()};$('#ngPlusBtn').onclick=()=>{state=null;showScreen('#titleScreen');boot();$('#traitorMode').click()}
+}
+boot();
+</script>
+</body>
+</html>
